@@ -6,7 +6,7 @@ setup(
   name='django-model-logs',        
   packages=['model_log'],  
   package_data={'model_log': files},
-  version='0.1.11',
+  version='0.1.15',
   description='Library for logging changes of each model',
   long_description=open('README.rst').read(),
   long_description_content_type='text/x-rst',
