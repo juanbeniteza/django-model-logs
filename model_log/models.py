@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Log(models.Model):
-
     ACTIONS = (
         ('C', "Created"),
         ('U', "Updated"),
@@ -18,9 +17,15 @@ class Log(models.Model):
     user = models.TextField(blank=True, null=True, help_text='ID of the user who makes the action')
 
     def __str__(self):
-        return "Changes on {} of {} at {}".format(self.object_id, self.object,
-                                                  self.date_created.strftime('%Y-%m-%d %H:%M'))
+        text = "Changes on {} of {} at {}".format(
+            self.object_id,
+            self.model,
+            self.date_created.strftime('%Y-%m-%d %H:%M'))
+        return text
+
+    @property
+    def action_label(self):
+        return dict(self.ACTIONS)[self.action]
 
     class Meta:
         ordering = ("-pk",)
-
