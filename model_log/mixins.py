@@ -24,7 +24,9 @@ class ModelAdminMixin:
         # Then get the history for this object.
         opts = model._meta
         app_label = opts.app_label
-        log_data = Log.objects.filter(model=obj.__class__.__name__.lower())
+        log_data = Log.objects.filter(
+            model=obj.__class__.__name__.lower(),
+            object_id=object_id)
 
         context = {
             **self.admin_site.each_context(request),
