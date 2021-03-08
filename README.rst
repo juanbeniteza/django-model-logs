@@ -28,3 +28,7 @@ Quick start
         'app.ClassName',    # excluding from logging only for this model
     )
 
+4. To override Django's default view to show the history of a log, use LogModelAdmin instead of ModelAdmin::
+
+    class ExampleAdmin(LogModelAdmin):
+        pass
