@@ -32,13 +32,14 @@ def create_log(obj, action, db, data=None):
 
     user = _local.request.user.id if _local.request else "System User"
 
-    log_data = {
-        'object_id': obj.pk,
-        'model': ContentType.objects.get_for_model(obj._meta.model).model,
-        'action': action,
-        'data': data,
-        'user': user
-    }
+    if data or action == 'C':
+        log_data = {
+            'object_id': obj.pk,
+            'model': ContentType.objects.get_for_model(obj._meta.model).model,
+            'action': action,
+            'data': data,
+            'user': user
+        }
 
-    Log.objects.using(db).create(**log_data)
+        Log.objects.using(db).create(**log_data)
 
